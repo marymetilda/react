@@ -1,0 +1,15 @@
+.app-header {
+    background-color: blue;
+    color: white;
+    padding: 10px;
+
+}
+
+.app-header .header-title{
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.app-header span {
+    padding-right: 30px;
+}
