@@ -3,28 +3,32 @@ import Label from "./1";
 import './listitem.css';
 
 
-class Listitem extends React.Component {
-        render(){
+
+  function ListItem(props) {
+    
+    const {
+      title,
+      descr,
+      isActive
+    } = props;
+
     return (
-    <div className='list-item'>
-            <hr />
-            <div className='list-title'>
-              <h4>My Title One1111</h4>
-            </div>
-            <div className='list-descr'>
-              This is a very big description
-            </div>
-            <div className='list-label'>
-            <Label />
-            <Label />
-            <Label />
-            <Label />
-            <Label />
-            </div>
-          </div>
+      <div className='list-item'>
+        <hr />
+        <div className='list-title'>
+          <h4>{title}</h4>
+        </div>
+        <div className='list-descr'>
+          {descr}
+        </div>
+        <div className='list-label'>
+          <Label onAction={() => {
+            console.log('parent clicked');
+          }} isActive={isActive}/>
+        </div>
+      </div>
     )
   }
-}
 
-  export default Listitem;
-  
+
+export default ListItem;

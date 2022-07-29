@@ -4,7 +4,9 @@ import './label.css'
 
 class Label extends React.Component {
     render() {
-        return <span className="list_label_item"> kk </span>
+        const props = this.props;
+        const style = props.isActive ? {background: 'green'} : {background: 'orange'};
+        return <span onClick={props.onAction} className="list_label_item" style={style}>{props.isActive ? 'Active' : 'Non Active'}</span>
     }
 }
 
