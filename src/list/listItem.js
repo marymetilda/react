@@ -1,5 +1,5 @@
 import React from "react";
-import Label from "./1";
+import Label from "./label";
 import './listitem.css';
 
 
@@ -9,7 +9,9 @@ import './listitem.css';
     const {
       title,
       descr,
-      isActive
+      isActive,
+      onDelete,
+      onLabelClick
     } = props;
 
     return (
@@ -17,14 +19,13 @@ import './listitem.css';
         <hr />
         <div className='list-title'>
           <h4>{title}</h4>
+          <label onClick={onDelete}>Delete</label>
         </div>
         <div className='list-descr'>
           {descr}
         </div>
         <div className='list-label'>
-          <Label onAction={() => {
-            console.log('parent clicked');
-          }} isActive={isActive}/>
+          <Label isActive={isActive} onAction={onLabelClick} />
         </div>
       </div>
     )
