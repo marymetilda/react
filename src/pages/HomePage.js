@@ -2,34 +2,44 @@ import React from "react";
 import Tools from "../components/Tools";
 import SimpleList from "../list/simplelist"
 
-let arr = [{
-    id: 1,
-    title: "Appoinment for October",
-    descr: "The patient is resheduled to october",
-    isActive: true
-},
-{
-    id: 2,
-    title: "Appoinment for November",
-    descr: "The patient is resheduled to November",
-    isActive: false
-},
-{
-    id: 3,
-    title: "Appoinment for December",
-    descr: "The patient is resheduled to December",
-    isActive: true
-}]
 
-class List extends React.Component {
+
+class HomePage extends React.Component {
     
     constructor(props) {
         super(props);
 
         this.state = {
-            data: arr,
-            activeState:'all'
+            data: [],
+            activeState:'all',
+            message: ''
         };
+    }
+
+    componentDidMount() {
+        console.log('componentDidMount')
+        fetch('data.json')
+        .then((data) => {
+            return data.json();
+        })
+        .then((data) => {
+            this.setState({
+                data: data
+            });
+        })
+    }
+
+    componentDidUpdate = (prevProps, prevStates) => {
+        if (prevStates.message !== this.state.message){
+            this.setState({
+                message: 'Message'
+            });
+        }
+       
+    } 
+
+    componentWillUnmount() {
+        console.log('componentWillUnmount');
     }
 
     onListChange = (evt) => {
@@ -79,11 +89,11 @@ class List extends React.Component {
     
 
         return (
-            <Tools onAction={this.onListChange} >
+            <Tools labelValue={activeState} onAction={this.onListChange} >
                <SimpleList onLabelClick={this.handleLabelClick} data={newList} onAction={this.handleDelete} />
             </Tools>
         )
     }
 }
 
-export default List;
+export default HomePage;
