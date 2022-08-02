@@ -3,6 +3,7 @@ import Header from './components/header'
 import Footer from './components/footer'
 import HomePage from './pages/HomePage';
 import DummyPage from "./pages/DummyPage";
+import Usage from "./pages/usage";
 
 class MyApp extends React.Component{
 
@@ -29,7 +30,7 @@ class MyApp extends React.Component{
             case 'home':
                 return <HomePage />
             case 'usage':
-                return <DummyPage key="usage" name="Usage" />
+                return <Usage key="usage" name="Usage" />
             case 'settings':
                 return <DummyPage key="settings" name="Settings" />
             case 'logout':

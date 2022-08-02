@@ -1,8 +1,11 @@
 import React from "react";
 import Tools from "../components/Tools";
-import SimpleList from "../list/simplelist"
+import SimpleList from "../list/simplelist";
 
-
+import {
+    MyContext,
+    MyNewContext
+} from "./mycontext"
 
 class HomePage extends React.Component {
     
@@ -12,7 +15,8 @@ class HomePage extends React.Component {
         this.state = {
             data: [],
             activeState:'all',
-            message: ''
+            message: '',
+            showLabel: true
         };
     }
 
@@ -67,6 +71,12 @@ class HomePage extends React.Component {
             activeState: arg
         })
     }
+
+    handleShowLabel = (event) => {
+        this.setState({
+            showLabel: event.target.checked
+        });
+    }
     render() {
 
         const {
@@ -89,11 +99,26 @@ class HomePage extends React.Component {
     
 
         return (
-            <Tools labelValue={activeState} onAction={this.onListChange} >
+            <div>
+                <div>
+                <input checked={this.state.showLabel} onChange={this.handleShowLabel} type="checkbox"></input> Show Label
+                </div>
+
+
+            <MyNewContext.Provider value={100}>
+            <MyContext.Provider value={this.state.showLabel}>
+
+             <Tools labelValue={activeState} onAction={this.onListChange} >
                <SimpleList onLabelClick={this.handleLabelClick} data={newList} onAction={this.handleDelete} />
             </Tools>
+
+            </MyContext.Provider>
+            </MyNewContext.Provider>
+
+            </div>
         )
     }
 }
 
 export default HomePage;
+
